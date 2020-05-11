@@ -12,7 +12,7 @@ public class ThreadMysql {
                 TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(4),
                 new ThreadPoolExecutor.DiscardOldestPolicy());
 
-        threadPool.submit(new MysqlRunable());
+//        threadPool.submit(new MysqlRunable());
 
 
 
