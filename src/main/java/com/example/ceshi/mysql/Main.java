@@ -4,7 +4,9 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,7 +23,7 @@ public class Main {
 
         Connection connection = MysqlPool.getConnection();
         try {
-            ResultSet resultSet = connection.prepareStatement("select count(1) from ceshi").executeQuery();
+            ResultSet resultSet = connection.prepareStatement("select count(1) from DWA.DWA_DEMO").executeQuery();
             while (resultSet.next()) {
                 totalSize = resultSet.getInt(1);
             }
@@ -34,29 +36,23 @@ public class Main {
         HadoopWrite hw = new HadoopWrite();
         FileSystem fs = hw.getFileSystem();
         FSDataOutputStream dos = null;
-        String sql="select * from ceshi limit 1,338668";
+
+
         try {
             dos = fs.create(new Path("/user/zgh/demo"));
+            BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(dos));
+            for (int i = 0; i < 3; i++) {
+
+                String sql = "select * from DWA.DWA_DEMO limit (" + (i * avg + 1) + "," + (i * avg + 1+avg)+")";
+                System.out.println(sql);
+                threadPool.submit(new MysqlRunable(sql,bw));
+            }
+            threadPool.shutdown();
+            long end = System.currentTimeMillis();
+            System.out.println((end-start)/1000);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        threadPool.submit(new MysqlRunable(sql,dos));
-
-
-   /*     try {
-            dos = fs.create(new Path("/user/zgh/demo"));
-            for (int i = 0; i < 1; i++) {
-                String sql = "select * from ceshi limit " + (i * avg + 1) + "," + avg;
-                threadPool.submit(new MysqlRunable(sql,dos));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        long end = System.currentTimeMillis();
-
-        System.out.println((end-start)/1000);
-
     }
 
 }
