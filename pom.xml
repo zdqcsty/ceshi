@@ -115,7 +115,7 @@
             <artifactId>jersey-server</artifactId>
             <version>2.22.2</version>
         </dependency>
-
+<!--
         <dependency>
             <groupId>com.bonc.xcloud</groupId>
             <artifactId>XCloudJDBC</artifactId>
@@ -131,14 +131,16 @@
                 </exclusion>
             </exclusions>
             <version>2.6.0</version>
-        </dependency>
+        </dependency>-->
 
+<!--
         <dependency>
             <groupId>com.bonc.xcloud</groupId>
             <artifactId>XCloud_SP_Procedure_Parser</artifactId>
             <scope>runtime</scope>
             <version>2.6.0</version>
         </dependency>
+-->
 
         <dependency>
             <groupId>net.jpountz.lz4</groupId>
@@ -154,9 +156,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+          <!--      <configuration>
                     <mainClass>com.example.ceshi.mysql.Main</mainClass>
-                </configuration>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>

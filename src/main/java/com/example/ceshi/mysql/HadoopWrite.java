@@ -36,8 +36,10 @@ public class HadoopWrite {
         long start = System.currentTimeMillis();
         Connection connection = MysqlPool.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from DWA.DWA_DEMO");
-//            preparedStatement.setFetchSize(Integer.MIN_VALUE);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from ceshi",ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            connection.prepareStatement("aaa");
+            preparedStatement.setFetchSize(Integer.MIN_VALUE);
+//            preparedStatement.setFetchSize(100000);
             ResultSet resultSet = preparedStatement.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();

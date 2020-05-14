@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class MysqlPool {
 
-//    public static String jdbcUrl="jdbc:mysql://10.130.2.62:3306/tpcds?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE";
-    public static String jdbcUrl="jdbc:xcloud:@172.16.44.7:1905/SXLTDW";
-//    public static String jdbcUrl="jdbc:hive2://10.130.2.132:10001/zgh";
+    public static String jdbcUrl="jdbc:mysql://10.130.2.62:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE";
+//    public static String jdbcUrl="jdbc:xcloud:@172.16.44.7:1905/SXLTDW";
+//    public static String jdbcUrl="jdbc:hive2://10.130.2.132:10000/zgh";
     public static HikariDataSource hikariDataSource;
 
     static{
@@ -20,14 +20,14 @@ public class MysqlPool {
 
     public static void hiveDataSource(String jdbcurl, String username, String password){
         hikariDataSource = new HikariDataSource();
-        hikariDataSource.setDriverClassName("com.bonc.xcloud.jdbc.XCloudDriver");
+//        hikariDataSource.setDriverClassName("com.bonc.xcloud.jdbc.XCloudDriver");
 //        hikariDataSource.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
         hikariDataSource.setJdbcUrl(jdbcurl);
-        hikariDataSource.setUsername("stage");
-//        hikariDataSource.setUsername("root");
+//        hikariDataSource.setUsername("stage");
+        hikariDataSource.setUsername("root");
 //        hikariDataSource.setUsername("hadoop");
-        hikariDataSource.setPassword("stage123");
-//        hikariDataSource.setPassword("root");
+//        hikariDataSource.setPassword("stage123");
+        hikariDataSource.setPassword("root");
         hikariDataSource.setMinimumIdle(10);
         //空闲连接存活最大时间，默认600000（10分钟）
         hikariDataSource.setIdleTimeout(600000);
@@ -49,13 +49,15 @@ public class MysqlPool {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("select * from DWA.DWA_DEMO limit 10");
+            preparedStatement = connection.prepareStatement("select count(*) from demo ");
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 String str = resultSet.getString(1);
                 System.out.println(str);
             }
+
+            connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();

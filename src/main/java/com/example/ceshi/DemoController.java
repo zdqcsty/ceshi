@@ -1,5 +1,6 @@
 package com.example.ceshi;
 
+import com.example.ceshi.mysql.MysqlPool;
 import com.example.ceshi.pythondemo.DiaoYong;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
@@ -9,17 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Controller
 public class DemoController {
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 
-    private static String CONNECTION_URL ="jdbc:hive2://10.130.2.179:10001/lxg;principal=hs2/node06-cuidong.novalocal@BONCDSC.GREAT;auth=kerberos";
+    private static String CONNECTION_URL = "jdbc:hive2://10.130.2.179:10001/lxg;principal=hs2/node06-cuidong.novalocal@BONCDSC.GREAT;auth=kerberos";
 
     @RequestMapping(value = "/testHdfs")
     @ResponseBody
@@ -29,7 +27,7 @@ public class DemoController {
 
 
         byte[] buff = new byte[1024];
-        BufferedInputStream bis = new  BufferedInputStream(resourceAsStream);
+        BufferedInputStream bis = new BufferedInputStream(resourceAsStream);
         OutputStream os = null;
         try {
             os = response.getOutputStream();
@@ -54,10 +52,31 @@ public class DemoController {
         return Boolean.TRUE;
     }
 
+    @RequestMapping(value = "/testHive")
+    @ResponseBody
+    public Boolean testHive() throws IOException, SQLException {
+        Connection connection = MysqlPool.getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("select count(*) from demo ");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String str = resultSet.getString(1);
+                System.out.println(str);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Boolean.TRUE;
+    }
+
 
     @RequestMapping(value = "/testThrift")
     @ResponseBody
-    public Boolean testThrift(String keytab,String priciple,String queue) throws IOException, SQLException {
+    public Boolean testThrift(String keytab, String priciple, String queue) throws IOException, SQLException {
 
         try {
             Class.forName(driverName);
@@ -77,12 +96,12 @@ public class DemoController {
 //        Thread.sleep(20000);
 //        connection.prepareStatement("set spark.yarn.queue=hushunpeng").execute();
         String sql = "select count(*) from angie.xingnengceshi";
-        String sql1="set set yarn.queue.name="+queue;
+        String sql1 = "set set yarn.queue.name=" + queue;
 
 //        connection.prepareStatement(sql).execute();
         connection.prepareStatement(sql).execute();
         ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getInt(1));
         }
 
@@ -92,7 +111,6 @@ public class DemoController {
 
         return Boolean.TRUE;
     }
-
 
 
 }

@@ -17,9 +17,9 @@ public class Main {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         Integer totalSize = 0;
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(3, 3, 1,
-                TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(4),
-                new ThreadPoolExecutor.DiscardOldestPolicy());
+ThreadPoolExecutor threadPool = new ThreadPoolExecutor(3, 3, 1,
+        TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(4),
+        new ThreadPoolExecutor.DiscardOldestPolicy());
 
         Connection connection = MysqlPool.getConnection();
         try {
