@@ -1,9 +1,11 @@
 package com.example.ceshi;
 
-import com.example.ceshi.mysql.MysqlPool;
 import com.example.ceshi.pythondemo.DiaoYong;
+import com.example.ceshi.test.Test4;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,8 @@ import java.sql.*;
 
 @Controller
 public class DemoController {
+
+    private static final Logger logger = LoggerFactory.getLogger(Test4.class);
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 
@@ -54,23 +58,29 @@ public class DemoController {
 
     @RequestMapping(value = "/testHive")
     @ResponseBody
-    public Boolean testHive() throws IOException, SQLException {
-        Connection connection = MysqlPool.getConnection();
+    public void testHive(String sql) throws IOException, SQLException {
+      /*  Connection connection = MysqlPool.getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("select count(*) from demo ");
+            preparedStatement = connection.prepareStatement(sql);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            preparedStatement.execute();
+//            ResultSet resultSet = preparedStatement.executeQuery();
+        *//*    while (resultSet.next()) {
                 String str = resultSet.getString(1);
                 System.out.println(str);
-            }
-
-            connection.close();
+            }*//*
+//            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+//            connection.close();
         }
-        return Boolean.TRUE;
+        return Boolean.TRUE;*/
+
+        logger.error("aaa");
+
+
     }
 
 

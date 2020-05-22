@@ -23,8 +23,6 @@ public class Ceshi111 {
             Process proc = Runtime.getRuntime().exec(arg1);// 执行py文件
             BufferedInputStream bis = new  BufferedInputStream(proc.getInputStream());
 
-
-
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line = null;
             while ((line = in.readLine()) != null) {
