@@ -54,9 +54,9 @@ public class MysqlPool {
 //        hikariDataSource.setDriverClassName("com.bonc.xcloud.jdbc.XCloudDriver");
         druidDataSource.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
         //监控日志
-/*        druidDataSource.setRemoveAbandoned(true);
+        druidDataSource.setRemoveAbandoned(true);
         druidDataSource.setRemoveAbandonedTimeout(60);
-        druidDataSource.setLogAbandoned(true);*/
+        druidDataSource.setLogAbandoned(true);
 
         druidDataSource.setUrl(jdbcurl);
         druidDataSource.setUsername("hadoop");

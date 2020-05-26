@@ -1,5 +1,6 @@
 package com.example.ceshi;
 
+import com.example.ceshi.mysql.MysqlPool;
 import com.example.ceshi.pythondemo.DiaoYong;
 import com.example.ceshi.test.Test4;
 import org.apache.hadoop.conf.Configuration;
@@ -58,27 +59,25 @@ public class DemoController {
 
     @RequestMapping(value = "/testHive")
     @ResponseBody
-    public void testHive(String sql) throws IOException, SQLException {
-      /*  Connection connection = MysqlPool.getConnection();
+    public Boolean testHive(String sql) throws IOException, SQLException {
+        Connection connection = MysqlPool.getConnection();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.execute();
 //            ResultSet resultSet = preparedStatement.executeQuery();
-        *//*    while (resultSet.next()) {
+/*            while (resultSet.next()) {
                 String str = resultSet.getString(1);
                 System.out.println(str);
-            }*//*
+            }*/
 //            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
 //            connection.close();
         }
-        return Boolean.TRUE;*/
-
-        logger.error("aaa");
+        return Boolean.TRUE;
 
 
     }
