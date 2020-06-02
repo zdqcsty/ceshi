@@ -18,7 +18,7 @@ public class MysqlPool {
 
 //    public static String jdbcUrl="jdbc:mysql://10.130.2.62:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE";
 //    public static String jdbcUrl="jdbc:xcloud:@172.16.44.7:1905/SXLTDW";
-    public static String jdbcUrl="jdbc:hive2://10.130.2.132:10001/zgh";
+    public static String jdbcUrl="jdbc:hive2://10.130.2.132:10000/zgh";
     public static HikariDataSource hikariDataSource;
 
     public static DruidDataSource druidDataSource;
@@ -54,15 +54,15 @@ public class MysqlPool {
 //        hikariDataSource.setDriverClassName("com.bonc.xcloud.jdbc.XCloudDriver");
         druidDataSource.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
         //监控日志
-        druidDataSource.setRemoveAbandoned(true);
+/*        druidDataSource.setRemoveAbandoned(true);
         druidDataSource.setRemoveAbandonedTimeout(60);
-        druidDataSource.setLogAbandoned(true);
+        druidDataSource.setLogAbandoned(true);*/
 
         druidDataSource.setUrl(jdbcurl);
         druidDataSource.setUsername("hadoop");
-        druidDataSource.setMaxActive(4);
-        druidDataSource.setMinIdle(2);
-        druidDataSource.setInitialSize(2);
+        druidDataSource.setMaxActive(10);
+        druidDataSource.setMinIdle(10);
+        druidDataSource.setInitialSize(10);
     }
 
 

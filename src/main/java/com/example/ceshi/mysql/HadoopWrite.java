@@ -36,10 +36,12 @@ public class HadoopWrite {
         long start = System.currentTimeMillis();
         Connection connection = MysqlPool.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from demo");
+            connection.prepareStatement("set hive.metastore.client.socket.timeout=500").execute();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from yangli");
+
 //            preparedStatement.setFetchSize(Integer.MIN_VALUE);
 //            connection.setAutoCommit(false);
-            preparedStatement.setFetchSize(3000);
+            preparedStatement.setFetchSize(100);
             ResultSet resultSet = preparedStatement.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();

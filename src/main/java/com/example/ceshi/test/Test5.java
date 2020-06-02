@@ -1,17 +1,17 @@
 package com.example.ceshi.test;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.File;
 
 public class Test5 {
 
-    private static final Logger logger = LoggerFactory.getLogger(Test5.class);
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) {
+        File f = PackageUtil.createTempJar("E:\\study_workSpace\\ceshi\\src\\main\\java\\com\\example\\ceshi\\test");
 
-        logger.info("ttttttt");
+        System.out.println(f.getPath());
 
-
+//	while(true){
+//
+//	}
     }
-
 }
