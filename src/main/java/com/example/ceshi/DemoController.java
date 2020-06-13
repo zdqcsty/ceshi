@@ -2,7 +2,6 @@ package com.example.ceshi;
 
 import com.example.ceshi.mysql.MysqlPool;
 import com.example.ceshi.pythondemo.DiaoYong;
-import com.example.ceshi.test.Test4;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.slf4j.Logger;
@@ -17,8 +16,6 @@ import java.sql.*;
 
 @Controller
 public class DemoController {
-
-    private static final Logger logger = LoggerFactory.getLogger(Test4.class);
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 
@@ -121,5 +118,35 @@ public class DemoController {
         return Boolean.TRUE;
     }
 
+    @RequestMapping(value = "/testMysql")
+    @ResponseBody
+    public void testMysql() throws IOException, SQLException {
+
+        Connection conn = null;
+        String url = "jdbc:mysql://localhost:3306/ceshi?serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8";
+        String userName = "root";
+        String password = "root";
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DriverManager.getConnection(url, userName, password);
+            stmt = conn.createStatement();
+            String sql = "select * from products";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String id = rs.getString(1);
+                System.out.println(id);
+            }
+/*            // 关闭资源
+            rs.close();
+            stmt.close();
+            conn.close();*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
+
+
+    }
 
 }

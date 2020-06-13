@@ -18,6 +18,7 @@ public class HadoopWrite {
         Configuration conf=new Configuration();
         conf.addResource("hebing/core-site.xml");
         conf.addResource("hebing/hdfs-site.xml");
+//        conf.set("dfs.client.use.datanode.hostname", "true");
 
         try {
             fileSystem = FileSystem.get(conf);

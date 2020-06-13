@@ -169,7 +169,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.ceshi.byjar.Test3</mainClass>
+                    <mainClass>com.example.ceshi.byjar.Test2</mainClass>
                 </configuration>
             </plugin>
         </plugins>

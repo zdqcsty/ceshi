@@ -19,12 +19,12 @@
   
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://beh001</value>
+    <value>hdfs://behhb001</value>
   </property>
     
   <property>
     <name>ha.zookeeper.quorum</name>
-    <value>shujuyun01-cuidong.novalocal:2188,shujuyun02-cuidong.novalocal:2188,shujuyun03-cuidong.novalocal:2188</value>
+    <value>hebing1.novalocal:2188,hebing2.novalocal:2188,hebing3.novalocal:2188</value>
   </property>
    
   <property>
@@ -93,17 +93,17 @@
   </property>
     
   <property>
-    <name>hadoop.proxyuser.azkaban.hosts</name>
+    <name>hadoop.proxyuser.oozie.hosts</name>
     <value>*</value>
   </property>
     
   <property>
-    <name>hadoop.proxyuser.azkaban.groups</name>
+    <name>hadoop.proxyuser.oozie.groups</name>
     <value>*</value>
   </property>
     
   <property>
-    <name>hadoop.proxyuser.azkaban.users</name>
+    <name>hadoop.proxyuser.oozie.users</name>
     <value>*</value>
   </property>
     
@@ -115,6 +115,11 @@
   <property>
     <name>hadoop.http.staticuser.user</name>
     <value>hadoop</value>
+  </property>
+    
+  <property>
+    <name>fs.hdfs.impl.disable.cache</name>
+    <value>true</value>
   </property>
   
 </configuration>

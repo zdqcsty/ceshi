@@ -26,6 +26,7 @@ public class Test2 {
         launcher.setMainClass("com.example.sparklearn.Test");
         // 添加传递给spark driver mian方法的参数
         launcher.addAppArgs("hebing.vbapf79d12d33fc944c8bd5e3051a9d1f6f2_parquet", "hdfs:///user/zgh/demo");
+        launcher.addAppArgs("devtest.vbapfeed7f1f2deb4fa08f8ea7d1700162f7_parquet", "hdfs:///user/zgh/demo");
         // 设置该spark application的master
         launcher.setMaster("yarn"); // 在yarn-cluster上启动，也可以再local[*]上
         // 关闭sparksubmit的详细报告

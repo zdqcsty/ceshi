@@ -1,7 +1,6 @@
 package com.example.ceshi.mysql;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.pool.DruidDataSourceStatLogger;
 import com.example.ceshi.test.Test4;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;

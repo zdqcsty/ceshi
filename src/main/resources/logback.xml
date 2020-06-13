@@ -76,11 +76,10 @@
     <!--    <logger name="com.example.ceshi.mysql.MysqlPool" level="ERROR">
             <appender-ref ref="STDOUT"/>
         </logger>-->
-<!--
-    &lt;!&ndash; 日志输出级别 &ndash;&gt;
-    <root level="ERROR">
+    <!-- 日志输出级别 -->
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
-  &lt;!&ndash;        <appender-ref ref="FILE" />&ndash;&gt;
-&lt;!&ndash;          <appender-ref ref="FILE-ERROR" />&ndash;&gt;
-    </root>-->
+  <!--        <appender-ref ref="FILE" />-->
+<!--          <appender-ref ref="FILE-ERROR" />-->
+    </root>
 </configuration>
