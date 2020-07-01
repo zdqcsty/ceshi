@@ -1,7 +1,6 @@
 package com.example.ceshi.mysql;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.example.ceshi.test.Test4;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +12,10 @@ import java.sql.SQLException;
 
 public class MysqlPool {
 
-    private static final Logger logger = LoggerFactory.getLogger(Test4.class);
 
 //    public static String jdbcUrl="jdbc:mysql://10.130.2.62:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE";
 //    public static String jdbcUrl="jdbc:xcloud:@172.16.44.7:1905/SXLTDW";
-    public static String jdbcUrl="jdbc:hive2://10.130.2.132:10000/zgh";
+    public static String jdbcUrl="jdbc:hive2://172.16.43.166:21066/default;auth=KERBEROS;principal=hive/hadoop.hadoop.com@HADOOP.COM";
     public static HikariDataSource hikariDataSource;
 
     public static DruidDataSource druidDataSource;

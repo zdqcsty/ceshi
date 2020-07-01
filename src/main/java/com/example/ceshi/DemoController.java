@@ -7,12 +7,15 @@ import org.apache.hadoop.security.UserGroupInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.*;
+import java.util.Map;
 
 @Controller
 public class DemoController {
@@ -54,29 +57,18 @@ public class DemoController {
         return Boolean.TRUE;
     }
 
-    @RequestMapping(value = "/testHive")
+    @RequestMapping(value = "/testPara",method = RequestMethod.POST)
     @ResponseBody
-    public Boolean testHive(String sql) throws IOException, SQLException {
-        Connection connection = MysqlPool.getConnection();
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement(sql);
+    public String testHive(@RequestBody Map<Integer,String> map) {
 
-            preparedStatement.execute();
-//            ResultSet resultSet = preparedStatement.executeQuery();
-/*            while (resultSet.next()) {
-                String str = resultSet.getString(1);
-                System.out.println(str);
-            }*/
-//            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-//            connection.close();
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+
+            System.out.println("==========");
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            System.out.println("==========");
         }
-        return Boolean.TRUE;
 
-
+        return "sucess";
     }
 
 
