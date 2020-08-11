@@ -1,11 +1,8 @@
 package com.example.ceshi;
 
-import com.example.ceshi.mysql.MysqlPool;
-import com.example.ceshi.pythondemo.DiaoYong;
+import com.example.ceshi.test.Demo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,49 +21,18 @@ public class DemoController {
 
     private static String CONNECTION_URL = "jdbc:hive2://10.130.2.179:10001/lxg;principal=hs2/node06-cuidong.novalocal@BONCDSC.GREAT;auth=kerberos";
 
-    @RequestMapping(value = "/testHdfs")
+    @RequestMapping(value = "/testHive",method = RequestMethod.POST)
     @ResponseBody
-    public Boolean testHdfs(HttpServletResponse response) throws IOException, SQLException {
+    public String testHive() {
 
-        InputStream resourceAsStream = DiaoYong.class.getClassLoader().getResourceAsStream("demo.txt");
+//        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+//
+//            System.out.println("==========");
+//            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//            System.out.println("==========");
+//        }
 
-
-        byte[] buff = new byte[1024];
-        BufferedInputStream bis = new BufferedInputStream(resourceAsStream);
-        OutputStream os = null;
-        try {
-            os = response.getOutputStream();
-            int i = bis.read(buff);
-            while (i != -1) {
-                os.write(buff, 0, buff.length);
-                os.flush();
-                i = bis.read(buff);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return Boolean.TRUE;
-    }
-
-    @RequestMapping(value = "/testPara",method = RequestMethod.POST)
-    @ResponseBody
-    public String testHive(@RequestBody Map<Integer,String> map) {
-
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-
-            System.out.println("==========");
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-            System.out.println("==========");
-        }
+        Demo.getDO();
 
         return "sucess";
     }
