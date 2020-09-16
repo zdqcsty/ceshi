@@ -1,6 +1,5 @@
 package com.example.ceshi;
 
-import com.example.ceshi.test.Demo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class DemoController {
 //            System.out.println("==========");
 //        }
 
-        Demo.getDO();
+//        Demo.getDO();
 
         return "sucess";
     }

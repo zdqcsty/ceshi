@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.mysql;
 
 import org.apache.hadoop.conf.Configuration;
@@ -72,3 +73,4 @@ public class HadoopWrite {
         fs.close();
     }
 }
+*/

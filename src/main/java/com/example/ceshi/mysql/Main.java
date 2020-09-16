@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.mysql;
 
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -56,3 +57,4 @@ ThreadPoolExecutor threadPool = new ThreadPoolExecutor(3, 3, 1,
     }
 
 }
+*/

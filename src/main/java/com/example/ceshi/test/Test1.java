@@ -1,16 +1,23 @@
 package com.example.ceshi.test;
 
-import java.util.Random;
+import org.apache.commons.cli.*;
+
 
 public class Test1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+        CommandLineParser commandLineParser = new BasicParser();
 
-        Random random=new Random();
+        Options options = new Options();
 
-        System.out.println(random.nextInt(3));
+        options.addOption("demo","hdfs",false,"start hdfs");
+        options.addOption("ceshi","yarn",false,"start yarn");
 
+        CommandLine line = commandLineParser.parse(options,args);
 
+        if (line.hasOption("demo")){
+            System.out.println("hahah");
+        }
 
     }
 

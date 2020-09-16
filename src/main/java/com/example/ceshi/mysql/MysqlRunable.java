@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.mysql;
 
 import java.io.BufferedWriter;
@@ -47,3 +48,4 @@ public class MysqlRunable implements Runnable {
         }
     }
 }
+*/
