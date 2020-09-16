@@ -7,6 +7,7 @@ public class MyThread implements Runnable {
     public MyThread(Trans trans, int num) {
         this.trans = trans;
         this.num = num;
+        System.out.println("hahah");
     }
 
     public void run() {
