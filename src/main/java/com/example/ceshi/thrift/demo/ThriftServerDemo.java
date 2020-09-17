@@ -1,4 +1,4 @@
-package com.example.ceshi.thrift;
+package com.example.ceshi.thrift.demo;
 
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;

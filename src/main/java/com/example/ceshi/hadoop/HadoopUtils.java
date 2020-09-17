@@ -27,4 +27,21 @@ public class HadoopUtils {
         return fileSystem;
     }
 
+    public static void main(String[] args) {
+
+        HadoopUtils hu=new HadoopUtils();
+
+
+    }
+
+    class demo{
+
+        public  void getCeshi(){
+
+            System.out.println("hahah");
+
+        }
+
+    }
+
 }

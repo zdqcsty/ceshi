@@ -229,7 +229,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.ceshi.test1.Test1</mainClass>
+                    <mainClass>com.example.ceshi.hadoop.Test</mainClass>
                 </configuration>
             </plugin>
 
