@@ -16,6 +16,8 @@ public class Test1 {
 
         File file=new File(filePath);
 */
+
+        //路径问题
         Test1.class.getResourceAsStream("/test/test.csv");
 
         InputStream in = Test1.class.getResourceAsStream("/test/test.csv");
