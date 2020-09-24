@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.thrift.demo;
 
 import org.apache.thrift.TProcessor;
@@ -47,3 +48,4 @@ public class ThriftServerDemo {
     }
 
 }
+*/

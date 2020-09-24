@@ -68,24 +68,24 @@ public class SubmitPython {
 
         SparkLauncher launcher = new SparkLauncher(map);
 
-        launcher.setAppResource("hdfs:///user/zgh/moveToPath.py");
+        launcher.setAppResource("hdfs:///user/zgh/ceshi.py");
 
         launcher.setSparkHome("/opt/beh/core/spark");
-        launcher.addPyFile("hdfs:///user/zgh/moveToPath.py");
+        launcher.addPyFile("hdfs:///user/zgh/ceshi.py");
         List<String> args = new ArrayList<String>();
-/*        args.add("--sql=" + "select * from ceshi.test limit 10" );
-        args.add("--output=" + "/user/zgh/cdahcdbjba");
-        args.add("--headers=" + "a,b,c,v,e,n");*/
-        args.add("--source=" + "/user/zgh/aaa" );
-        args.add("--target=" + "/user/zgh/cdahcdbjba");
+        args.add("--sql=" + "select * from ceshi.test limit 10" );
+        args.add("--output=" + "/user/zgh/loiuyhj");
+        args.add("--headers=" + "a,b,c,v,e,n");
+/*        args.add("--source=" + "/user/zgh/aaa" );
+        args.add("--target=" + "/user/zgh/cdahcdbjba");*/
         for (String arg: args) {
             launcher.addAppArgs(arg);
         }
         //local模式可行
         launcher.setMaster("yarn");
-        launcher.setDeployMode("client");
-        launcher.setConf(SparkLauncher.EXECUTOR_MEMORY, "4g");
-        launcher.setConf(SparkLauncher.EXECUTOR_CORES, "2");
+        launcher.setDeployMode("local");
+/*        launcher.setConf(SparkLauncher.EXECUTOR_MEMORY, "4g");
+        launcher.setConf(SparkLauncher.EXECUTOR_CORES, "2");*/
         SparkAppHandle sparkAppHandle = launcher.startApplication(new SparkAppHandle.Listener() {
             @Override
             public void stateChanged(SparkAppHandle handle) {

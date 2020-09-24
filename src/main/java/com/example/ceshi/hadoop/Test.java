@@ -18,5 +18,11 @@ public class Test {
         System.out.println("hahahahahha");
 
 
+        String aaa="/user/test";
+
+        String[] split = aaa.split("/");
+        System.out.println(split[split.length-1]);
+
+
     }
 }

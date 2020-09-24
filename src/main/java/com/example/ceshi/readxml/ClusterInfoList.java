@@ -16,7 +16,6 @@ import java.util.List;
  *
  */
 
-
 @Data
 @JacksonXmlRootElement(localName = "liantong")
 public class ClusterInfoList {

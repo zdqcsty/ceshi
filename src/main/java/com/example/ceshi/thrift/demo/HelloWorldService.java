@@ -3,7 +3,8 @@
  *
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
- */
+ *//*
+
 package com.example.ceshi.thrift.demo;
 
 @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
@@ -247,7 +248,9 @@ public class HelloWorldService {
 
     public @org.apache.thrift.annotation.Nullable java.lang.String username; // required
 
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    */
+/** The set of fields this struct contains, along with convenience methods for finding and manipulating them. *//*
+
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       USERNAME((short)1, "username");
 
@@ -259,9 +262,11 @@ public class HelloWorldService {
         }
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
+       *//*
+
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -272,19 +277,23 @@ public class HelloWorldService {
         }
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches fieldId, throwing an exception
        * if it is not found.
-       */
+       *//*
+
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
         if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches name, or null if its not found.
-       */
+       *//*
+
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByName(java.lang.String name) {
         return byName.get(name);
@@ -327,9 +336,11 @@ public class HelloWorldService {
       this.username = username;
     }
 
-    /**
+    */
+/**
      * Performs a deep copy on <i>other</i>.
-     */
+     *//*
+
     public sayHello_args(sayHello_args other) {
       if (other.isSetUsername()) {
         this.username = other.username;
@@ -359,7 +370,9 @@ public class HelloWorldService {
       this.username = null;
     }
 
-    /** Returns true if field username is set (has been assigned a value) and false otherwise */
+    */
+/** Returns true if field username is set (has been assigned a value) and false otherwise *//*
+
     public boolean isSetUsername() {
       return this.username != null;
     }
@@ -393,7 +406,9 @@ public class HelloWorldService {
       throw new java.lang.IllegalStateException();
     }
 
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    */
+/** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise *//*
+
     public boolean isSet(_Fields field) {
       if (field == null) {
         throw new java.lang.IllegalArgumentException();
@@ -614,7 +629,9 @@ public class HelloWorldService {
 
     public @org.apache.thrift.annotation.Nullable java.lang.String success; // required
 
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    */
+/** The set of fields this struct contains, along with convenience methods for finding and manipulating them. *//*
+
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success");
 
@@ -626,9 +643,11 @@ public class HelloWorldService {
         }
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
+       *//*
+
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
@@ -639,19 +658,23 @@ public class HelloWorldService {
         }
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches fieldId, throwing an exception
        * if it is not found.
-       */
+       *//*
+
       public static _Fields findByThriftIdOrThrow(int fieldId) {
         _Fields fields = findByThriftId(fieldId);
         if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
         return fields;
       }
 
-      /**
+      */
+/**
        * Find the _Fields constant that matches name, or null if its not found.
-       */
+       *//*
+
       @org.apache.thrift.annotation.Nullable
       public static _Fields findByName(java.lang.String name) {
         return byName.get(name);
@@ -694,9 +717,11 @@ public class HelloWorldService {
       this.success = success;
     }
 
-    /**
+    */
+/**
      * Performs a deep copy on <i>other</i>.
-     */
+     *//*
+
     public sayHello_result(sayHello_result other) {
       if (other.isSetSuccess()) {
         this.success = other.success;
@@ -726,7 +751,9 @@ public class HelloWorldService {
       this.success = null;
     }
 
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    */
+/** Returns true if field success is set (has been assigned a value) and false otherwise *//*
+
     public boolean isSetSuccess() {
       return this.success != null;
     }
@@ -760,7 +787,9 @@ public class HelloWorldService {
       throw new java.lang.IllegalStateException();
     }
 
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    */
+/** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise *//*
+
     public boolean isSet(_Fields field) {
       if (field == null) {
         throw new java.lang.IllegalArgumentException();
@@ -972,3 +1001,4 @@ public class HelloWorldService {
   }
 
 }
+*/

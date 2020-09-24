@@ -19,13 +19,21 @@ public class Test {
         Connection connection = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
 
 //        PreparedStatement statement = connection.prepareStatement("show partitions ceshi");
-        PreparedStatement statement = connection.prepareStatement("desc ceshi");
+        PreparedStatement statement = connection.prepareStatement("desc formatted thriftComment");
 
-        ResultSet resultSet = statement.executeQuery();
+//        ResultSetMetaData metaData = statement.getMetaData();
 
-        while (resultSet.next()){
-            System.out.println(resultSet.getString(1));
+//        String catalogName = metaData.getColumnName(1);
+//
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()){
+            String str = rs.getString(1);
+            System.out.println(str);
         }
+//
+//
+
 
 
     }

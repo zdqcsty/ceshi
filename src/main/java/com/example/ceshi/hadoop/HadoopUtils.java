@@ -27,21 +27,42 @@ public class HadoopUtils {
         return fileSystem;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+//        copyPathtoPath("/user/zgh/party","/user/zgh/digui");
 
-        HadoopUtils hu=new HadoopUtils();
-
+        Path path =new Path("aaa","bbb");
+        System.out.println(path.toString());
 
     }
 
-    class demo{
-
-        public  void getCeshi(){
-
-            System.out.println("hahah");
-
+    //用递归写的移动目录
+    public static boolean copyPathtoPath(String srcPath, String dstPath) throws Exception {
+        /**
+         *    /user/zgh/party
+         */
+        Path path = new Path(srcPath);
+        FileSystem fs = getFileSystem();
+        if (fs.isDirectory(new Path(srcPath))){
+            fs.mkdirs(new Path(srcPath));
+            String[] split = srcPath.split("/");
+            String resultDstPath = dstPath + "/" + split[split.length - 1];
+            FileStatus[] fileStatuses = fs.listStatus(new Path(srcPath));
+            for (FileStatus fileStatus:fileStatuses){
+                copyPathtoPath(fileStatus.getPath().toString(),resultDstPath);
+            }
+        }else{
+            int len;
+            String[] split = srcPath.split("/");
+            String resultDstPath = dstPath + "/" + split[split.length - 1];
+            FSDataInputStream srcFis = fs.open(new Path(srcPath));
+            FSDataOutputStream dstFos = fs.create(new Path(resultDstPath));
+            byte[] descArray = new byte[2048];
+            int bytesRead = srcFis.read(descArray);
+            while(bytesRead>=0){
+                dstFos.write(descArray);
+                bytesRead=srcFis.read(descArray);
+            }
         }
-
+        return true;
     }
-
 }

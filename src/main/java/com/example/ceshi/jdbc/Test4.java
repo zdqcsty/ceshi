@@ -1,15 +1,19 @@
 package com.example.ceshi.jdbc;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.util.JdbcUtils;
+import com.example.ceshi.hadoop.HadoopUtils;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import scala.math.Ordering;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.net.URI;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.sql.*;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.util.StringJoiner;
 
 public class Test4 {
 
@@ -27,22 +31,31 @@ public class Test4 {
             System.exit(1);
         }
 
-        Connection connection = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
+        Connection connection = DriverManager.getConnection(CONNECTION_URL, "hadoop", "");
 
-        DatabaseMetaData metaData = connection.getMetaData();
+        ResultSet resultSet = connection.prepareStatement("select * from nullceshi limit 10").executeQuery();
 
-        //获取数据库
-        ResultSet catalogs = metaData.getSchemas();
-        while (catalogs.next()){
-            System.out.println(catalogs.getString(1));
+
+//        String[] strArr = {"cid","cname","ename","phone","email","address"};
+        String[] strArr = {"cid","cname","phone","email"};
+        int columnCnt = resultSet.getMetaData().getColumnCount();
+        Path file = new Path("/user/zgh/dcacdbcab","data.csv");
+        try (FileSystem fs = HadoopUtils.getFileSystem()) {
+            try (FSDataOutputStream outStream = fs.create(file)) {
+                try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(outStream))) {
+                    try (CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(strArr))) {
+                        while (resultSet.next()) {
+                            Object[] record = new Object[columnCnt];
+                            for (int i = 1; i <= columnCnt; i++) {
+                                record[i-1] = resultSet.getString(i);
+                            }
+                            printer.printRecord(record);
+                        }
+                    }
+                }
+            }
         }
-
-        //获取ceshi database下面的表（通用方式）
-        ResultSet angie_test = metaData.getTables(catalogs.toString(), "ceshi", "%", new String[]{"TABLE","VIEW"});
-        while (angie_test.next()){
-            String str = angie_test.getString(3);
-            System.out.println(str);
-        }
-        connection.close();
     }
+
 }
+

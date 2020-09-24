@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<environment>
+    <people>
+        <id>16817</id>
+        <name>张三01</name>
+        <birthday>2011-12-28</birthday>
+    </people>
+    <people>
+        <id>16817</id>
+        <name>张三02</name>
+        <birthday>2011-12-28</birthday>
+    </people>
+    <people>
+        <id>16817</id>
+        <name>张三03</name>
+        <birthday>2011-12-28</birthday>
+    </people>
+</environment>
