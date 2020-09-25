@@ -18,8 +18,8 @@ public class CommonCsv {
     public static void main(String[] args) throws IOException {
 
 
-        readByAuto("E:\\studyWorkSpace\\ceshi\\src\\main\\resources\\datafile\\a.csv");
-
+//        readByAuto("E:\\studyWorkSpace\\ceshi\\src\\main\\resources\\datafile\\a.csv");
+        wirteToHdfs();
 
 
     }
@@ -61,22 +61,22 @@ public class CommonCsv {
 
     /**
      * 将JDBC读取的数据写CSV到HDFS
-     * @param path
      * @throws IOException
      */
-    public static void  wirteToHdfs(String path) throws IOException {
+    public static void  wirteToHdfs() throws IOException {
 
         FileSystem fs = HadoopUtils.getFileSystem();
-        FSDataOutputStream fos = fs.create(new Path("demo"));
-        CSVPrinter printer = new CSVPrinter(new OutputStreamWriter(fos), CSVFormat.DEFAULT);
-        printer.printRecord();
+        FSDataOutputStream fos = fs.create(new Path("/user/zgh/cdmdkdk"));
+
+        CSVPrinter printer = new CSVPrinter(new OutputStreamWriter(fos), CSVFormat.DEFAULT.withHeader());
 
         Connection connection = JdbcTemplate.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from demo");
-            printer.printRecord(resultSet);
+            ResultSet resultSet = statement.executeQuery("select * from vbapff3dddbd28479f2c3e0c37f7_parquet limit 10");
+            printer.printRecords(resultSet);
+            printer.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

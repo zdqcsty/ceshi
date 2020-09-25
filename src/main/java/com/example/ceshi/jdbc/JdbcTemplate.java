@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 public class JdbcTemplate {
 
-    private static String driverName = "org.apache.spark.hive.jdbc.HiveDriver";
-    private static String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10000/ceshi";
+    private static String driverName = "org.apache.hive.jdbc.HiveDriver";
+    private static String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10001/hebing";
 
     public static Connection getConnection(){
         Connection connection=null;
@@ -20,13 +20,6 @@ public class JdbcTemplate {
         }
         try {
             connection = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
-            ResultSet resultSet = connection.prepareStatement("select current_database()").executeQuery();
-
-            while(resultSet.next()){
-                String string = resultSet.getString(1);
-                System.out.println(string);
-            }
-
         } catch (SQLException throwables) {
             return null;
         }

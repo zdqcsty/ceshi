@@ -4,35 +4,28 @@ import java.sql.*;
 
 public class Test {
 
-    private static final String driverName = "org.apache.hive.jdbc.HiveDriver";
-    private static final String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10000/ceshi";
+    private static final String DRIVER_NAME = "org.apache.hive.jdbc.HiveDriver";
+    private static final String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10000/hebing";
 
     public static void main(String[] args) throws SQLException {
 
         try {
-            Class.forName(driverName);
+            Class.forName(DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
         }
 
-        Connection connection = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
+        Connection conn = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
 
-//        PreparedStatement statement = connection.prepareStatement("show partitions ceshi");
-        PreparedStatement statement = connection.prepareStatement("desc formatted thriftComment");
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from vbapff3dddbd28479f2c3e0c37f7_parquet limit 10");
 
-//        ResultSetMetaData metaData = statement.getMetaData();
+        while (resultSet.next()){
 
-//        String catalogName = metaData.getColumnName(1);
-//
-        ResultSet rs = statement.executeQuery();
-
-        while (rs.next()){
-            String str = rs.getString(1);
-            System.out.println(str);
+            Object object = resultSet.getObject(1);
+            System.out.println(object.toString());
         }
-//
-//
 
 
 
