@@ -1,5 +1,7 @@
 package com.example.ceshi.copyFsToFs;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLineParser;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 import org.apache.hadoop.security.UserGroupInformation;
@@ -21,13 +23,13 @@ public class Demo {
     public AtomicReference<Exception> ex=new AtomicReference<>();
 
     public static void main(String[] args) throws Exception {
-/*      CommandLineParser commandLineParser = new BasicParser();
+      CommandLineParser commandLineParser = new BasicParser();
         Options options = new Options();
         options.addOption("srcSouce",false,"srcSouce");
         options.addOption("dstSource",false,"dstSource");
         CommandLine line = commandLineParser.parse(options,args);
         String srcSource = line.getOptionValue("srcSource");
-        String dstSource = line.getOptionValue("dstSource");*/
+        String dstSource = line.getOptionValue("dstSource");
 
         FileSystem liangtaiFs = getLiangtaiFs();
         liangtaiFs.exists(new Path("aaa"));
