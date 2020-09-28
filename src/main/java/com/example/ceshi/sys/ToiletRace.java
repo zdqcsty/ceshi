@@ -39,7 +39,7 @@ public class ToiletRace {
     public static void main(String[] args) {
 
         Semaphore demo = new Semaphore(2);
-        demo.tryAcquire()
+        demo.tryAcquire();
 
         for (int i = 0; i < THREAD_COUNT; i++) {
             threadPool.execute(new Employee(String.valueOf(i), s));

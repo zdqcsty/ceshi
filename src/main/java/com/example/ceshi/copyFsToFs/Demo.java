@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.copyFsToFs;
 
 import org.apache.commons.cli.BasicParser;
@@ -68,6 +69,7 @@ public class Demo {
 
 
     public static FileSystem getCeshiFs() throws Exception {
+*/
 /*        Configuration ceshiConf=new Configuration();
         ceshiConf.addResource("ceshi/core-site.xml");
         ceshiConf.addResource("ceshi/hdfs-site.xml");
@@ -75,7 +77,8 @@ public class Demo {
         String ceshiUser="test001@DEVTEST.BONC";
         String ceshikrb5ConfPath="E:\\study_workSpace\\ceshi\\src\\main\\resources\\ceshi\\krb5.conf";
         String ceshiKeytabPath="E:\\study_workSpace\\ceshi\\src\\main\\resources\\ceshi\\test001.ketab";
-        return  getFileSystemKerberos(ceshiConf, ceshiUri, ceshiUser, ceshikrb5ConfPath, ceshiKeytabPath);*/
+        return  getFileSystemKerberos(ceshiConf, ceshiUri, ceshiUser, ceshikrb5ConfPath, ceshiKeytabPath);*//*
+
         Configuration ceshiConf=new Configuration();
         ceshiConf.addResource(new Path("./ceshi/core-site.xml"));
         ceshiConf.addResource(new Path("./ceshi/hdfs-site.xml"));
@@ -87,6 +90,7 @@ public class Demo {
     }
 
     public static FileSystem getLiangtaiFs() throws Exception {
+*/
 /*        Configuration liangtaiConf=new Configuration();
         liangtaiConf.addResource("liangtai/core-site.xml");
         liangtaiConf.addResource("liangtai/hdfs-site.xml");
@@ -94,7 +98,8 @@ public class Demo {
         String liangtaiUser="xunlian@LIANGTAI.BONC";
         String liangtaikrb5ConfPath="E:\\study_workSpace\\ceshi\\src\\main\\resources\\liangtai\\krb5.conf";
         String liangtaiKeytabPath="E:\\study_workSpace\\ceshi\\src\\main\\resources\\liangtai\\xunlian.keytab";
-        return  getFileSystemKerberos(liangtaiConf, liangtaiUri, liangtaiUser, liangtaikrb5ConfPath, liangtaiKeytabPath);*/
+        return  getFileSystemKerberos(liangtaiConf, liangtaiUri, liangtaiUser, liangtaikrb5ConfPath, liangtaiKeytabPath);*//*
+
         Configuration liangtaiConf=new Configuration();
         liangtaiConf.addResource(new Path("./liangtai/core-site.xml"));
         liangtaiConf.addResource(new Path("./liangtai/hdfs-site.xml"));
@@ -180,3 +185,4 @@ public class Demo {
 
 
 }
+*/

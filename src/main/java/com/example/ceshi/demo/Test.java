@@ -21,7 +21,6 @@ public class Test {
                     System.out.println(sonFile.getPath());
                     deleteByPath(sonFile.getPath());
                 }
-                Files.delete(Paths.get(file.getPath()));
             }
             Files.delete(Paths.get(file.getPath()));
         } catch (IOException e) {

@@ -1,9 +1,6 @@
 package com.example.ceshi.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcTemplate {
 
@@ -25,5 +22,19 @@ public class JdbcTemplate {
         }
 
         return connection;
+    }
+
+    public static String getCurrentDatabase() throws Exception {
+        try (Connection connection = getConnection();
+             Statement state = connection.createStatement();
+             ResultSet resultSet = state.executeQuery("select current_database()")) {
+            while (resultSet.next()) {
+                String database = resultSet.getString(1);
+                return database;
+            }
+            throw new Exception("not found database");
+        } catch (SQLException e) {
+            throw new Exception("aaa");
+        }
     }
 }
