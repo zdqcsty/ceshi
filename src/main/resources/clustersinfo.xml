@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clusterinfos>
-        <clusterinfo>
-            <name>source</name>
-            <!--  <conninfo>
-                  &lt;!&ndash;                <uri>jdbc:hive2://liangtai1.novalocal:2188,liangtai2.novalocal:2188,liangtai3.novalocal:2188/default;principal=hs2/liangtai1.novalocal@LIANGTAI.BONC;serviceDiscoveryMode=zookeeper;zooKeeperNamespace=hiveserver2;saslQop=auth;auth=kerberos</uri>&ndash;&gt;
-                  <uri>jdbc:hive2://10.130.7.193:10000/;principal=hs2/liangtai1.novalocal@LIANGTAI.BONC;auth=kerberos</uri>
-                  <user>xunlian@LIANGTAI.BONC</user>
-                  <usekerberos>true</usekerberos>
-                  <krb5confpath>./src/main/resources/liangtai/krb5.conf</krb5confpath>
-                  <keytabpath>./src/main/resources/liangtai/xunlian.keytab</keytabpath>
-              </conninfo>-->
-            <hdfsinfo>
-                <hdfsconfpath>./src/main/resources/liangtai/hdfs-site.xml</hdfsconfpath>
-                <hdfsuri>hdfs://behlt001</hdfsuri>>
-                <user>xunlian@LIANGTAI.BONC</user>
-                <krb5confpath>./src/main/resources/liangtai/krb5.conf</krb5confpath>
-                <userkerberos>true</userkerberos>
-                <keytabpath>./src/main/resources/liangtai/xunlian.keytab</keytabpath>
-            </hdfsinfo>
-        </clusterinfo>
-    </clusterinfos>
-    <!--  <clusterinfo>
-          <name>dst</name>
-          <conninfo>
-              <uri>jdbc:hive2://10.130.7.204:10001/devtest;principal=hs2/hadooptd3.novalocal@DEVTEST.BONC;auth=kerberos
-              </uri>
-              <user>test001@DEVTEST.BONC</user>
-              <usekerberos>true</usekerberos>
-              <krb5confpath>./src/main/resources/ceshi/krb5.conf</krb5confpath>
-              <keytabpath>./src/main/resources/ceshi/test001.keytab</keytabpath>
-          </conninfo>
-          <hdfsinfo>
-              <hdfsconfpath>./src/main/resources/ceshi/hdfs-site.xml</hdfsconfpath>
-              <hdfsuri>hdfs://devtestcluster</hdfsuri>>
-              <user>test001@DEVTEST.BONC</user>
-              <krb5confpath>./src/main/resources/ceshi/krb5.conf</krb5confpath>
-              <userkerberos>true</userkerberos>
-              <keytabpath>./src/main/resources/ceshi/test001.keytab</keytabpath>
-          </hdfsinfo>
-      </clusterinfo>-->
+    <cluster>
+        <name>source</name>
+        <ccc>source</ccc>
+    </cluster>
+    <cluster>
+        <name>aaa</name>
+        <ccc>aaa</ccc>
+    </cluster>
+</clusterinfos>
+
 
