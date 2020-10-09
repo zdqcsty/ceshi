@@ -9,21 +9,18 @@ import lombok.Data;
 import java.util.List;
 
 /**
- *
- *  @JacksonXmlElementWrapper(localName = "Students")
- *     @JacksonXmlProperty(localName = "Stu")
- *     List<Student> student;  //学生列表
- *
+ * @JacksonXmlElementWrapper(localName = "Students")
+ * @JacksonXmlProperty(localName = "Stu")
+ * List<Student> student;  //学生列表
  */
 
 @Data
-@JacksonXmlRootElement(localName = "liantong")
+@JacksonXmlRootElement(localName = "clusterinfos")
 public class ClusterInfoList {
-
-//    @JacksonXmlElementWrapper(localName = "Students")
-    @JacksonXmlText
+    @JacksonXmlElementWrapper(localName = "demo", useWrapping = false)
+    @JacksonXmlProperty(localName = "cluster")
     public List<ClusterInfo> clusterinfos;
 
-    public ClusterInfoList(){}
-
+    public ClusterInfoList() {
+    }
 }
