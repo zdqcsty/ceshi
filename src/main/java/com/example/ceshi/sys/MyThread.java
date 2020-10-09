@@ -7,7 +7,6 @@ public class MyThread implements Runnable {
     public MyThread(Trans trans, int num) {
         this.trans = trans;
         this.num = num;
-        System.out.println("hahah");
     }
 
     public void run() {
@@ -17,7 +16,6 @@ public class MyThread implements Runnable {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
 
