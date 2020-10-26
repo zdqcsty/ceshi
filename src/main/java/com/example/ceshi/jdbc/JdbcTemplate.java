@@ -5,7 +5,7 @@ import java.sql.*;
 public class JdbcTemplate {
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
-    private static String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10001/hebing";
+    private static String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10001/test";
 
     public static Connection getConnection(){
         Connection connection=null;

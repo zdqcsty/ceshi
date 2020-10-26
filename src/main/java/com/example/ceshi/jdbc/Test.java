@@ -1,36 +1,49 @@
 package com.example.ceshi.jdbc;
 
-import java.sql.*;
+import org.apache.hadoop.fs.Path;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 public class Test {
 
-    private static final String DRIVER_NAME = "org.apache.hive.jdbc.HiveDriver";
-    private static final String CONNECTION_URL = "jdbc:hive2://10.130.7.208:10000/hebing";
+    private static String tableName = "partitionceshi";
 
     public static void main(String[] args) throws SQLException {
 
-        try {
-            Class.forName(DRIVER_NAME);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+        final Connection conn = JdbcTemplate.getConnection();
+        Map<String, String> resultMap = new HashMap<>();
+        List<String> list = new ArrayList<>();
+        final ResultSet resultSet = conn.prepareStatement("show partitions " + tableName).executeQuery();
+        while (resultSet.next()) {
+            final String partition = resultSet.getString(1).trim();
+            list.add(resultSet.getString(1).trim());
+        }
+        for (String partition : list) {
+            final String normalPartition = getNormalPartition(partition);
+            final PreparedStatement statement = conn.prepareStatement("desc  formatted " + tableName + " partition (" + normalPartition + ")");
+            final ResultSet parRs = statement.executeQuery();
+            while (parRs.next()) {
+                if ("Location".equals(parRs.getString(1).trim())) {
+                    final String partitionLocation = parRs.getString(2);
+                    resultMap.put(partition, partitionLocation);
+                    break;
+                }
+            }
         }
 
-        Connection conn = DriverManager.getConnection(CONNECTION_URL,"hadoop","");
-
-        Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("select * from vbapff3dddbd28479f2c3e0c37f7_parquet limit 10");
-
-        while (resultSet.next()){
-
-            Object object = resultSet.getObject(1);
-            System.out.println(object.toString());
-        }
-
-
-
+        System.out.println(resultMap);
     }
 
+    public static String getNormalPartition(String partition) {
+        final String[] split = partition.split("/");
+        return String.join(",", split);
+    }
+
+    ;
 
 
 }
