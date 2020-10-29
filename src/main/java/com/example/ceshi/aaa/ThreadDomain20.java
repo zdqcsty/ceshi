@@ -1,7 +1,7 @@
 package com.example.ceshi.aaa;
 
 public class ThreadDomain20 {
-    public  void otherMethod() {
+    public synchronized void otherMethod() {
         System.out.println("----------run--otherMethod");
     }
 

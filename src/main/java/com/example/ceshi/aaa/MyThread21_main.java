@@ -1,6 +1,6 @@
 package com.example.ceshi.aaa;
 
-public class main_21 {
+public class MyThread21_main {
 
     public static void main(String[] args) throws InterruptedException {
         ThreadDomain21 td = new ThreadDomain21();
