@@ -2,6 +2,8 @@ package com.example.ceshi.test;
 
 import org.apache.commons.cli.*;
 
+import java.util.UUID;
+
 public class Demo {
 
     public static void main(String[] args) throws ParseException {
@@ -17,7 +19,7 @@ public class Demo {
         final String keytabPath = cl.getOptionValue("keytabPath");
 
         System.out.println("krb5ConfPath--------"+krb5ConfPath);
-        System.out.println("user--------"+user);
+        System.out.println("user--------"+ UUID.randomUUID());
         System.out.println("keytabPath--------"+keytabPath);
     }
 }
