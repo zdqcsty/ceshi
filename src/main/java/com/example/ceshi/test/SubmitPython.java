@@ -73,9 +73,10 @@ public class SubmitPython {
         launcher.setSparkHome("/opt/beh/core/spark");
         launcher.addPyFile("hdfs:///user/zgh/ceshi.py");
         List<String> args = new ArrayList<String>();
-        args.add("--sql=" + "select * from ceshi.test limit 10" );
-        args.add("--output=" + "/user/zgh/loiuyhj");
-        args.add("--headers=" + "a,b,c,v,e,n");
+//        args.add("--sql=" + "select `id` from test.demoaaa where (`id`=1)" );
+        args.add("--sql=" + "select acct_day, projectNo, project_name, proj_type, proj_type_desc, proj_status, proj_status_desc, processInstanceStatus, processInstanceStatus_desc, projectManagerId, projectManagerName, customerManagerId, customerManagerName, proj_org_name, proj_trip_name, budget_baoxiao_cost_year from stress.step_step_25379480439 where (`proj_type_desc` in('商机','职能','研发') and `proj_status_desc`='进行中' and   `processInstanceStatus_desc`='已完成' and `budget_baoxiao_cost_year`=0) limit 10" );
+//        args.add("--output=" + "/user/zgh/loiuyhj");
+//        args.add("--headers=" + "a,b,c,v,e,n");
 /*        args.add("--source=" + "/user/zgh/aaa" );
         args.add("--target=" + "/user/zgh/cdahcdbjba");*/
         for (String arg: args) {
@@ -83,7 +84,7 @@ public class SubmitPython {
         }
         //local模式可行
         launcher.setMaster("yarn");
-        launcher.setDeployMode("local");
+        launcher.setDeployMode("client");
 /*        launcher.setConf(SparkLauncher.EXECUTOR_MEMORY, "4g");
         launcher.setConf(SparkLauncher.EXECUTOR_CORES, "2");*/
         SparkAppHandle sparkAppHandle = launcher.startApplication(new SparkAppHandle.Listener() {

@@ -30,9 +30,14 @@ public class HadoopUtils {
     public static void main(String[] args) throws Exception {
 //        copyPathtoPath("/user/zgh/party","/user/zgh/digui");
 
-        Path path =new Path("aaa","bbb");
-        System.out.println(path.toString());
+/*        Path path =new Path("aaa","bbb");
+        System.out.println(path.toString());*/
+        download(getFileSystem());
 
+    }
+
+    public static void download(FileSystem fs) throws IOException {
+        final FSDataOutputStream fos = fs.create(new Path("/user/zgh/ftpshoppingaaa.csv"));
     }
 
     //用递归写的移动目录

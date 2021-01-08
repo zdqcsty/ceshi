@@ -126,7 +126,6 @@
             <version>0.237</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -151,32 +150,6 @@
             <artifactId>jersey-server</artifactId>
             <version>2.22.2</version>
         </dependency>
-        <!--
-                <dependency>
-                    <groupId>com.bonc.xcloud</groupId>
-                    <artifactId>XCloudJDBC</artifactId>
-                    <scope>runtime</scope>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>commons-httpclient</groupId>
-                            <artifactId>httpclient</artifactId>
-                        </exclusion>
-                        <exclusion>
-                            <groupId>commons-httpcore</groupId>
-                            <artifactId>httpcore</artifactId>
-                        </exclusion>
-                    </exclusions>
-                    <version>2.6.0</version>
-                </dependency>-->
-
-        <!--
-                <dependency>
-                    <groupId>com.bonc.xcloud</groupId>
-                    <artifactId>XCloud_SP_Procedure_Parser</artifactId>
-                    <scope>runtime</scope>
-                    <version>2.6.0</version>
-                </dependency>
-        -->
 
         <dependency>
             <groupId>net.jpountz.lz4</groupId>
@@ -194,12 +167,6 @@
             <groupId>com.github.binarywang</groupId>
             <artifactId>java-testdata-generator</artifactId>
             <version>1.1.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>2.1.0</version>
         </dependency>
 
         <dependency>
@@ -244,16 +211,23 @@
             <version>1.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.20.Final</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-            <!--   <plugin>
-                   <groupId>org.springframework.boot</groupId>
-                   <artifactId>spring-boot-maven-plugin</artifactId>
-               </plugin>-->
-
-
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.example.ceshi.test.SubmitPython</mainClass>
+                </configuration>
+            </plugin>
 
 
             <!--            <plugin>
