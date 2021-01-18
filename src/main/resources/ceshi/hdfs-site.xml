@@ -322,6 +322,9 @@
     <name>dfs.balancer.kerberos.principal</name>
     <value>balancer/_HOST@DEVTEST.BONC</value>
   </property>
+  <property>
+  <name>dfs.namenode.kerberos.principal.pattern</name>
+  <value>*</value>
+  </property>
 
 </configuration>
-

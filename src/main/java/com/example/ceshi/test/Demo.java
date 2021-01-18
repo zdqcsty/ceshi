@@ -20,5 +20,7 @@ public class Demo {
         System.out.println("krb5ConfPath--------"+krb5ConfPath);
         System.out.println("user--------"+ UUID.randomUUID());
         System.out.println("keytabPath--------"+keytabPath);
+
+        Thread thread=new Thread();
     }
 }

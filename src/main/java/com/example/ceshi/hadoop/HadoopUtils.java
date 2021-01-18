@@ -47,15 +47,15 @@ public class HadoopUtils {
          */
         Path path = new Path(srcPath);
         FileSystem fs = getFileSystem();
-        if (fs.isDirectory(new Path(srcPath))){
+        if (fs.isDirectory(new Path(srcPath))) {
             fs.mkdirs(new Path(srcPath));
             String[] split = srcPath.split("/");
             String resultDstPath = dstPath + "/" + split[split.length - 1];
             FileStatus[] fileStatuses = fs.listStatus(new Path(srcPath));
-            for (FileStatus fileStatus:fileStatuses){
-                copyPathtoPath(fileStatus.getPath().toString(),resultDstPath);
+            for (FileStatus fileStatus : fileStatuses) {
+                copyPathtoPath(fileStatus.getPath().toString(), resultDstPath);
             }
-        }else{
+        } else {
             int len;
             String[] split = srcPath.split("/");
             String resultDstPath = dstPath + "/" + split[split.length - 1];
@@ -63,9 +63,9 @@ public class HadoopUtils {
             FSDataOutputStream dstFos = fs.create(new Path(resultDstPath));
             byte[] descArray = new byte[2048];
             int bytesRead = srcFis.read(descArray);
-            while(bytesRead>=0){
+            while (bytesRead >= 0) {
                 dstFos.write(descArray);
-                bytesRead=srcFis.read(descArray);
+                bytesRead = srcFis.read(descArray);
             }
         }
         return true;

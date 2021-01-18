@@ -14,7 +14,7 @@ public class JdbcCeshi implements Serializable {
 
     public static void main(String[] args) {
 
-        Connection connection=null;
+        Connection connection = null;
         try {
             Class.forName(driverName);
         } catch (ClassNotFoundException e) {
@@ -29,7 +29,6 @@ public class JdbcCeshi implements Serializable {
                 String string = resultSet.getString(1);
                 System.out.println(string);
             }*/
-
         } catch (SQLException throwables) {
         }
 
