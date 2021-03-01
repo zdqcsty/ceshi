@@ -164,6 +164,7 @@
     RULE:[2:$1@$0](hs2.*@.*DEVTEST.BONC)s/.*/hadoop/
     RULE:[2:$1@$0](hbase.*@.*DEVTEST.BONC)s/.*/hadoop/
     RULE:[2:$1@$0](kafka.*@.*DEVTEST.BONC)s/.*/hadoop/
+    RULE:[1:$1@$0](^.*@DEVTEST\.BONC$)s/^(.*)@DEVTEST\.BONC$/$1/g
     DEFAULT
   </value>
 </property>

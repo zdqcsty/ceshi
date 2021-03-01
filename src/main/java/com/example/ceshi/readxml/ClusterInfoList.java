@@ -14,12 +14,19 @@ import java.util.List;
  * List<Student> student;  //学生列表
  */
 
-@Data
 @JacksonXmlRootElement(localName = "clusterinfos")
 public class ClusterInfoList {
     @JacksonXmlElementWrapper(localName = "demo", useWrapping = false)
     @JacksonXmlProperty(localName = "cluster")
     public List<ClusterInfo> clusterinfos;
+
+    public List<ClusterInfo> getClusterinfos() {
+        return clusterinfos;
+    }
+
+    public void setClusterinfos(List<ClusterInfo> clusterinfos) {
+        this.clusterinfos = clusterinfos;
+    }
 
     public ClusterInfoList() {
     }

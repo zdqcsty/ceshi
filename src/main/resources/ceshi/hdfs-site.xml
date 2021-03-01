@@ -16,7 +16,13 @@
 
 <!-- Put site-specific property overrides in this file. -->
 <configuration>
-  
+
+  <property>
+    <name>dfs.client.use.datanode.hostname</name>
+    <value>true</value>
+  </property>
+
+
   <property>
     <name>dfs.nameservices</name>
     <value>devtestcluster</value>
@@ -322,9 +328,6 @@
     <name>dfs.balancer.kerberos.principal</name>
     <value>balancer/_HOST@DEVTEST.BONC</value>
   </property>
-  <property>
-  <name>dfs.namenode.kerberos.principal.pattern</name>
-  <value>*</value>
-  </property>
 
 </configuration>
+

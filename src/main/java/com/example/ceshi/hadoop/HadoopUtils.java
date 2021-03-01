@@ -37,7 +37,8 @@ public class HadoopUtils {
     }
 
     public static void download(FileSystem fs) throws IOException {
-        final FSDataOutputStream fos = fs.create(new Path("/user/zgh/ftpshoppingaaa.csv"));
+        FileStatus[] fileStatuses = fs.listStatus(new Path("/user/zgh/tmp/demoaaa"));
+        System.out.println(fileStatuses.length);
     }
 
     //用递归写的移动目录
