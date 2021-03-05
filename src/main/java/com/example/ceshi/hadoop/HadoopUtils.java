@@ -1,5 +1,6 @@
 package com.example.ceshi.hadoop;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 
@@ -32,13 +33,20 @@ public class HadoopUtils {
 
 /*        Path path =new Path("aaa","bbb");
         System.out.println(path.toString());*/
-        download(getFileSystem());
-
+        Path path = new Path("/home/hadoop/zgh/demob.csv");
+        System.out.println("---------"+path.toUri().getPath());
+        FileUtils.deleteQuietly(new File(path.toUri().getPath()));
+//        download(getFileSystem());
     }
 
     public static void download(FileSystem fs) throws IOException {
-        FileStatus[] fileStatuses = fs.listStatus(new Path("/user/zgh/tmp/demoaaa"));
-        System.out.println(fileStatuses.length);
+
+
+        for (FileStatus file : fs.listStatus(new Path("/user/zgh/tmp/demobbb"))) {
+            System.out.println(file.getPath().toUri().getPath());
+        }
+
+
     }
 
     //用递归写的移动目录

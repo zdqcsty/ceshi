@@ -8,9 +8,11 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.UserGroupInformation;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.security.PrivilegedAction;
 import java.sql.*;
+import java.util.Properties;
 
 
 public class Test2 {
@@ -28,16 +30,16 @@ public class Test2 {
 
         //这里注意  这里的路径不能是相对路径，一定要是绝对路径，不然报Can't get Kerberos realm的错误
         //这一行也必须要加上
-        System.setProperty("java.security.krb5.conf", "./krb5.conf");
+        System.setProperty("java.security.krb5.conf", "/home/tech_cloud/jdbc/krb5.conf");
         //这一行在调测krb5的时候可以加上
         //        System.setProperty("sun.security.krb5.debug", "true");
         Configuration configuration = new Configuration();
-        configuration.addResource(new Path("./core-site.xml"));
-        configuration.addResource(new Path("./hdfs-site.xml"));
+        configuration.addResource(new Path("/home/tech_cloud/jdbc/core-site.xml"));
+        configuration.addResource(new Path("/home/tech_cloud/jdbc/hdfs-site.xml"));
         configuration.set("hadoop.security.authentication", "Kerberos");
         UserGroupInformation.setConfiguration(configuration);
         //这里keytab也是需要用绝对路径的
-        UserGroupInformation UGI = UserGroupInformation.loginUserFromKeytabAndReturnUGI("xunlian@LIANGTAI.BONC", "./xunlian.keytab");
+        UserGroupInformation UGI = UserGroupInformation.loginUserFromKeytabAndReturnUGI("tech_cloud@BONC.COM", "/home/tech_cloud/jdbc/tech_cloud.keytab");
 
         Connection connection = UGI.doAs(new PrivilegedAction<Connection>() {
             @Override
@@ -58,22 +60,22 @@ public class Test2 {
 
         CommandLineParser commandLineParser = new DefaultParser();
         Options options = new Options();
-        options.addOption("table", true, "table");
+        options.addOption("sql", true, "sql");
         CommandLine commandLine = commandLineParser.parse(options, args);
 
         if (commandLine.getOptions() == null) {
-            throw new Exception("nedd a option  -table");
+            throw new Exception("need a option -sql");
         }
-        String table = commandLine.getOptionValue("table");
-
+        String sql = commandLine.getOptionValue("sql");
 
         Connection connection = getConnection();
         Statement statement = connection.createStatement();
+
         long countStart = System.currentTimeMillis();
-        ResultSet resultSet = statement.executeQuery("select count(*) from " + table);
+        ResultSet resultSet = statement.executeQuery(sql);
         long countEnd = System.currentTimeMillis();
 
-        System.out.println("count 花费的时间为--" + (countEnd - countStart) / 1000);
+        System.out.println("executeQuery 时间为 -- " + (countEnd - countStart) / 1000.0);
 
         long nextStart = System.currentTimeMillis();
         if (resultSet.next()) {
@@ -81,7 +83,11 @@ public class Test2 {
         }
         long nextEnd = System.currentTimeMillis();
 
-        System.out.println("next 花费的时间为--" + (nextEnd - nextStart) / 1000);
+        System.out.println("next 时间为 -- " + (nextEnd - nextStart) / 1000.0);
+
+
+        Properties prop=new Properties();
+        prop.load(new FileReader("aaa"));
     }
 }
 
