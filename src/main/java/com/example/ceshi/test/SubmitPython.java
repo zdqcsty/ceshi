@@ -3,6 +3,7 @@ package com.example.ceshi.test;
 import com.example.ceshi.jdbc.JdbcTemplate;
 import org.apache.spark.launcher.SparkAppHandle;
 import org.apache.spark.launcher.SparkLauncher;
+import org.slf4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,16 +16,16 @@ import java.util.concurrent.CountDownLatch;
 
 public class SubmitPython {
 
+    private static Logger LOG = org.slf4j.LoggerFactory.getLogger(com.example.ceshi.test.JdbcTemplate.class);
+
 
     public static void main(String[] args) {
         try {
             submitJob();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.info(e.getMessage(),e);
         }
-
     }
-
 
     //组装一个基础的map
     public Map<String, String> generateBaseConf() {
@@ -70,16 +71,17 @@ public class SubmitPython {
 
         launcher.setAppResource("hdfs:///user/zgh/ceshi.py");
 
+        launcher.setMaster("cluster");
         launcher.setSparkHome("/opt/beh/core/spark");
         launcher.addPyFile("hdfs:///user/zgh/ceshi.py");
         List<String> args = new ArrayList<String>();
-//        args.add("--sql=" + "select `id` from test.demoaaa where (`id`=1)" );
-        args.add("--sql=" + "select acct_day, projectNo, project_name, proj_type, proj_type_desc, proj_status, proj_status_desc, processInstanceStatus, processInstanceStatus_desc, projectManagerId, projectManagerName, customerManagerId, customerManagerName, proj_org_name, proj_trip_name, budget_baoxiao_cost_year from stress.step_step_25379480439 where (`proj_type_desc` in('商机','职能','研发') and `proj_status_desc`='进行中' and   `processInstanceStatus_desc`='已完成' and `budget_baoxiao_cost_year`=0) limit 10" );
+        args.add("--sql=" + "select `id` from test.demoaaa");
+//        args.add("--sql=" + "select acct_day, projectNo, project_name, proj_type, proj_type_desc, proj_status, proj_status_desc, processInstanceStatus, processInstanceStatus_desc, projectManagerId, projectManagerName, customerManagerId, customerManagerName, proj_org_name, proj_trip_name, budget_baoxiao_cost_year from stress.step_step_25379480439 where (`proj_type_desc` in('商机','职能','研发') and `proj_status_desc`='进行中' and   `processInstanceStatus_desc`='已完成' and `budget_baoxiao_cost_year`=0) limit 10" );
 //        args.add("--output=" + "/user/zgh/loiuyhj");
 //        args.add("--headers=" + "a,b,c,v,e,n");
 /*        args.add("--source=" + "/user/zgh/aaa" );
         args.add("--target=" + "/user/zgh/cdahcdbjba");*/
-        for (String arg: args) {
+        for (String arg : args) {
             launcher.addAppArgs(arg);
         }
         //local模式可行
@@ -90,6 +92,14 @@ public class SubmitPython {
         SparkAppHandle sparkAppHandle = launcher.startApplication(new SparkAppHandle.Listener() {
             @Override
             public void stateChanged(SparkAppHandle handle) {
+
+                Map<String,String> map=new HashMap<>();
+
+                if ("FAILED".equals(handle.getState().toString())) {
+                    System.out.println("---------------");
+                    map.put(handle.getAppId(),"FAILED");
+                    countDownLatch.countDown();
+                }
                 if (handle.getState().isFinal()) {
                     countDownLatch.countDown();
                 }
