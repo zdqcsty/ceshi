@@ -49,21 +49,19 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
-            <version>2.9.1</version>
+            <version>2.7.7</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-distcp</artifactId>
-            <version>2.9.1</version>
+            <version>2.7.7</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.9.1</version>
+            <version>2.7.7</version>
         </dependency>
 
         <dependency>
@@ -81,7 +79,7 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>1.2.1</version>
+            <version>1.1.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.eclipse.jetty.aggregate</groupId>
@@ -94,6 +92,7 @@
             <groupId>commons-cli</groupId>
             <artifactId>commons-cli</artifactId>
             <version>1.4</version>
+            <scope>provided</scope>
         </dependency>
         <!--
                 <dependency>
@@ -132,7 +131,9 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.11</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy-agent</artifactId>
@@ -171,11 +172,11 @@
             <version>1.1.2</version>
         </dependency>
 
- <!--       <dependency>
-            <groupId>ru.yandex.clickhouse</groupId>
-            <artifactId>clickhouse-jdbc</artifactId>
-            <version>0.2.4</version>
-        </dependency>-->
+        <!--       <dependency>
+                   <groupId>ru.yandex.clickhouse</groupId>
+                   <artifactId>clickhouse-jdbc</artifactId>
+                   <version>0.2.4</version>
+               </dependency>-->
 
         <dependency>
             <groupId>org.apache.thrift</groupId>
@@ -220,6 +221,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.75</version>
+        </dependency>
+
+        <dependency>
             <groupId>net.sourceforge.javacsv</groupId>
             <artifactId>javacsv</artifactId>
             <version>2.0</version>
@@ -239,7 +246,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.ceshi.test.SubmitPython</mainClass>
+                    <mainClass>com.example.ceshi.test.SubmitLauncherTest</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -252,41 +259,41 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>uber-jar</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.2.4</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>shade</goal>
-                                </goals>
-                                <configuration>
-                                    <transformers>
-                                        <transformer
-                                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <manifestEntries>
-                                                <Main-Class>com.example.ceshi.test.SubmitPython</Main-Class>
-                                            </manifestEntries>
-                                        </transformer>
-                                        <transformer
-                                                implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                            <resource>META-INF/kie.conf</resource>
-                                        </transformer>
-                                    </transformers>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
+    <!-- <profiles>
+         <profile>
+             <id>uber-jar</id>
+             <build>
+                 <plugins>
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-shade-plugin</artifactId>
+                         <version>3.2.4</version>
+                         <executions>
+                             <execution>
+                                 <phase>package</phase>
+                                 <goals>
+                                     <goal>shade</goal>
+                                 </goals>
+                                 <configuration>
+                                     <transformers>
+                                         <transformer
+                                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                             <manifestEntries>
+                                                 <Main-Class>com.example.ceshi.test.SubmitPython</Main-Class>
+                                             </manifestEntries>
+                                         </transformer>
+                                         <transformer
+                                                 implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                             <resource>META-INF/kie.conf</resource>
+                                         </transformer>
+                                     </transformers>
+                                 </configuration>
+                             </execution>
+                         </executions>
+                     </plugin>
+                 </plugins>
+             </build>
+         </profile>
+     </profiles>
+ -->
 </project>

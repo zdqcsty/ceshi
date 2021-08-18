@@ -8,12 +8,17 @@ import java.io.IOException;
 import java.security.PrivilegedAction;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class KerberosJdbcTemplateaCeshi {
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
     private static String CONNECTION_URL = "jdbc:hive2://10.130.7.204:10000/devtest;principal=hs2/hadooptd3.novalocal@DEVTEST.BONC?mapreduce.job.queuename=test001;hive.exec.max.created.files=200000";
+
+    private static String url = "jdbc:hive2://hadooptd1.novalocal:2188,hadooptd2.novalocal:2188,hadooptd3.novalocal:2188/devtest;" +
+            "principal=hs2/hadooptd3.novalocal@DEVTEST.BONC;auth=kerberos;" +
+            "serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2";
 
     //TODO
     public static void main(String[] args) throws SQLException, IOException, InterruptedException {
@@ -40,19 +45,37 @@ public class KerberosJdbcTemplateaCeshi {
             @Override
             public Connection run() {
                 try {
-                    Connection connection = DriverManager.getConnection(CONNECTION_URL);
+                    Connection connection = DriverManager.getConnection(url);
                     return connection;
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 return null;
             }
         });
 
-        String sql ="create table vbap2_b74b4588f1494cf2b41bcbbe68a57f5f_paraaa  STORED AS PARQUET  LOCATION '/test001/datascience-vbap-data-mart/dataSet/vbap1401ee6bac450086eeb5baee/data11' as  select * from vbap2_b74b4588f1494cf2b41bcbbe68a57f5f_csv_csv";
 
-        String sql1="create table vbap2_5694f89e8cde404c84067d7d24f150b6_parbbbb  STORED AS PARQUET  LOCATION '/test001/datascience-vbap-data-mart/dataSet/vbap1401ee6bac450086eeb5baee/data2' as  select * from vbap2_5694f89e8cde404c84067d7d24f150b6_csv_csv";
+        String sql = "SHOW TABLES";
 
-        connection.prepareStatement(sql1).execute();
+        System.out.println(connection);
+
+        System.out.println("Running:" + sql);
+        try {
+            ResultSet res = connection.prepareStatement(sql).executeQuery();
+            System.out.println("-----表信息-------------------------begin ");
+            int i=0;
+            while (res.next()) {
+                i++;
+                String curTableName = res.getString(1);
+                System.out.println(curTableName);
+                if(i==50){
+                    break;
+                }
+            }
+            System.out.println("-----表信息-------------------------end ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         /*ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
         while (resultSet.next()) {

@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi.sh;
 
 import org.apache.hadoop.conf.Configuration;
@@ -97,8 +98,10 @@ public class ClusterUtils {
         Configuration conf = new Configuration();
         conf.addResource(new Path("/opt/beh/core/hadoop/etc/hadoop/yarn-site.xml"));
         conf.addResource(new Path("/opt/beh/core/hadoop/etc/hadoop/mapred-site.xml"));
+*/
 /*        conf.addResource(new Path("ceshi/yarn-site.xml"));
-        conf.addResource(new Path("ceshi/mapred-site.xml"));*/
+        conf.addResource(new Path("ceshi/mapred-site.xml"));*//*
+
 //        conf.addResource(new Path(prop.getProperty("yarnsite.path")));
 //        conf.addResource(new Path(prop.getProperty("mapredsite.path")));
         yarnClient.init(conf);
@@ -106,13 +109,15 @@ public class ClusterUtils {
         return yarnClient;
     }
 
-    /**
+    */
+/**
      * 根据applicationName 获取application 并kill
      *
      * @param client
      * @param applicationName
      * @throws Exception
-     */
+     *//*
+
     public static void killApplication(YarnClient client, String applicationName) throws Exception {
 
         ApplicationId applicationId = null;
@@ -131,3 +136,4 @@ public class ClusterUtils {
         client.killApplication(applicationId);
     }
 }
+*/

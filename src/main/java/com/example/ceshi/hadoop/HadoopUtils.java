@@ -33,10 +33,14 @@ public class HadoopUtils {
 
 /*        Path path =new Path("aaa","bbb");
         System.out.println(path.toString());*/
-        Path path = new Path("/home/hadoop/zgh/demob.csv");
-        System.out.println("---------"+path.toUri().getPath());
-        FileUtils.deleteQuietly(new File(path.toUri().getPath()));
+//        Path path = new Path("/home/hadoop/zgh/demob.csv");
+//        System.out.println("---------" + path.toUri().getPath());
+//        FileUtils.deleteQuietly(new File(path.toUri().getPath()));
 //        download(getFileSystem());
+//        readHdfs();
+        copyToLoacl();
+        System.exit(1);
+
     }
 
     public static void download(FileSystem fs) throws IOException {
@@ -78,5 +82,29 @@ public class HadoopUtils {
             }
         }
         return true;
+    }
+
+
+    public static void readHdfs() throws IOException {
+        final FileSystem fileSystem = getFileSystem();
+        final FSDataInputStream open = fileSystem.open(new Path("/user/zgh/ftpshopping.csv"));
+
+//        fileSystem.create()
+        BufferedReader br = new BufferedReader(new InputStreamReader(open));
+
+        final String s = br.readLine();
+
+        System.out.println(s);
+
+    }
+
+
+    public static void copyToLoacl() throws IOException {
+        final FileSystem fileSystem = getFileSystem();
+
+        fileSystem.copyToLocalFile(new Path("/user/zgh/tmp"),new Path("E:\\tmp\\aaa"));
+
+        fileSystem.close();
+
     }
 }

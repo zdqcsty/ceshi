@@ -1,3 +1,4 @@
+/*
 package com.example.ceshi;
 
 import org.apache.hadoop.conf.Configuration;
@@ -69,6 +70,9 @@ public class DemoController {
         }
 
 
+        new BufferedWriter()
+
+new BufferedOutputStream()
         connection.close();
 
 
@@ -94,10 +98,12 @@ public class DemoController {
                 String id = rs.getString(1);
                 System.out.println(id);
             }
+*/
 /*            // 关闭资源
             rs.close();
             stmt.close();
-            conn.close();*/
+            conn.close();*//*
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -107,3 +113,4 @@ public class DemoController {
     }
 
 }
+*/
