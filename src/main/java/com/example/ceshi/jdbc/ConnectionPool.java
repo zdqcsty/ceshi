@@ -1,4 +1,4 @@
-package com.example.ceshi;
+package com.example.ceshi.jdbc;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.stereotype.Component;
