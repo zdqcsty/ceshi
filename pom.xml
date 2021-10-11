@@ -79,6 +79,7 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
+<!--            <version>2.1.1</version>-->
             <version>1.1.0</version>
             <exclusions>
                 <exclusion>
@@ -172,12 +173,6 @@
             <version>1.1.2</version>
         </dependency>
 
-        <!--       <dependency>
-                   <groupId>ru.yandex.clickhouse</groupId>
-                   <artifactId>clickhouse-jdbc</artifactId>
-                   <version>0.2.4</version>
-               </dependency>-->
-
         <dependency>
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
@@ -232,6 +227,14 @@
             <version>2.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.apache</groupId>
+            <artifactId>hadoop-plugins</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/hadoop-plugins-8.0.2-302022.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -240,7 +243,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.ceshi.test.SubmitLauncherTest</mainClass>
+                    <mainClass>com.example.ceshi.test.TestFujianSpark</mainClass>
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
             <plugin>

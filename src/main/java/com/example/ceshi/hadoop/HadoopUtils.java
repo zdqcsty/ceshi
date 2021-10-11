@@ -1,12 +1,10 @@
 package com.example.ceshi.hadoop;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HadoopUtils {
 
@@ -36,21 +34,26 @@ public class HadoopUtils {
 //        Path path = new Path("/home/hadoop/zgh/demob.csv");
 //        System.out.println("---------" + path.toUri().getPath());
 //        FileUtils.deleteQuietly(new File(path.toUri().getPath()));
-//        download(getFileSystem());
+        download(getFileSystem());
 //        readHdfs();
-        copyToLoacl();
+//        copyToLoacl();
         System.exit(1);
-
     }
 
     public static void download(FileSystem fs) throws IOException {
 
+        final FileStatus[] fileStatuses = fs.listStatus(new Path("/user/zgh/tmp/demobbb"));
 
-        for (FileStatus file : fs.listStatus(new Path("/user/zgh/tmp/demobbb"))) {
-            System.out.println(file.getPath().toUri().getPath());
+        if (fileStatuses.length != 0){
+            for (FileStatus file:fileStatuses){
+                System.out.println(file.getPath().toString());
+                fs.delete(file.getPath(),false);
+            }
         }
 
+//        fs.delete(new Path("/user/zgh/tmp/demobbb"), true);
 
+        fs.close();
     }
 
     //用递归写的移动目录
@@ -102,7 +105,7 @@ public class HadoopUtils {
     public static void copyToLoacl() throws IOException {
         final FileSystem fileSystem = getFileSystem();
 
-        fileSystem.copyToLocalFile(new Path("/user/zgh/tmp"),new Path("E:\\tmp\\aaa"));
+        fileSystem.copyToLocalFile(new Path("/user/zgh/tmp"), new Path("E:\\tmp\\aaa"));
 
         fileSystem.close();
 

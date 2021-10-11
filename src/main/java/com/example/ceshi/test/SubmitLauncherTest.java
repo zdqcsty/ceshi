@@ -71,7 +71,7 @@ public class SubmitLauncherTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("HADOOP_CONF_DIR", "/opt/beh/core/hadoop/etc/hadoop");
+        map.put("HADOOP_CONF_DIR", "/opt/beh/core/hadoop/etc/hadoopa");
         map.put("JAVA_HOME", "/opt/beh/core/jdk");
 
         SparkLauncher launcher = new SparkLauncher(map);
@@ -85,8 +85,8 @@ public class SubmitLauncherTest {
 
         Thread.sleep(10000);
 
-        launcher.setMaster("client");
-        launcher.setSparkHome("/opt/beh/core/spark");
+        launcher.setMaster("cluster");
+        launcher.setSparkHome("/opt/beh/core/sparka");
         launcher.addPyFile("hdfs:///user/zgh/ceshi.py");
         List<String> args = new ArrayList<String>();
 //        args.add("--sql=" + "select * from test.trino_test limit 3");
